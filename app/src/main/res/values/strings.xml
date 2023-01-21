@@ -3,4 +3,9 @@
     <string name="launch_gallery">Launch Gallery</string>
     <string name="take_picture">Take Picture</string>
     <string name="classified_as">Classified as:</string>
+    <string name="settings">settings</string>
+    <string name="profile">profile</string>
+    <string name="about_us">About Us</string>
+    <string name="logout">Logout</string>
+    <string name="login">Login</string>
 </resources>

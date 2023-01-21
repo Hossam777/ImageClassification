@@ -1,4 +1,4 @@
-package com.example.imageclassification.presentation
+package com.example.imageclassification.presentation.mainactivity
 
 import androidx.lifecycle.ViewModel
 

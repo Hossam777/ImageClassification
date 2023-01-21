@@ -1,4 +1,4 @@
-package com.example.imageclassification.presentation
+package com.example.imageclassification.presentation.mainactivity
 
 import android.Manifest
 import android.content.Intent
