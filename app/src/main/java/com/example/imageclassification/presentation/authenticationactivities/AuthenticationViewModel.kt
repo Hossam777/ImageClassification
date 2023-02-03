@@ -26,30 +26,30 @@ class AuthenticationViewModel @Inject constructor(
         auth = Firebase.auth
         db = Firebase.firestore
     }
+
     fun tryLoginWithoutCredentials() {
         isLoading.postValue(true)
         val currentUser = auth.currentUser
-        if (currentUser != null){
+        if (currentUser != null) {
             currentUser.let {
                 db.collection("names").document(auth.currentUser?.email.toString()).get()
                     .addOnCompleteListener {
-                        if(it.result["name"] != null){
+                        if (it.result["name"] != null) {
                             name.value = it.result["name"].toString()
                             user.value = auth.currentUser
                             isLoading.postValue(false)
-                        }
-                        else{
+                        } else {
                             isLoading.postValue(false)
                         }
                     }
             }
-        }else{
+        } else {
             println("Not logged in")
             isLoading.postValue(false)
         }
     }
 
-    fun logout(){
+    fun logout() {
         auth.signOut()
     }
 
@@ -61,7 +61,7 @@ class AuthenticationViewModel @Inject constructor(
                     println("sign in:success")
                     db.collection("names").document(email).get()
                         .addOnCompleteListener {
-                            if(it.result["name"] != null){
+                            if (it.result["name"] != null) {
                                 name.value = (it.result["name"].toString())
                                 user.value = (auth.currentUser)
                                 isLoading.postValue(false)
@@ -80,7 +80,7 @@ class AuthenticationViewModel @Inject constructor(
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    db.collection("names").document(email).set(hashMapOf("name" to name))
+                    db.collection("names").document(email).set(hashMapOf("name" to fullName))
                         .addOnCompleteListener {
                             name.postValue(fullName)
                             user.postValue(auth.currentUser)

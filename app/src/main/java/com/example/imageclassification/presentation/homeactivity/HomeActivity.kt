@@ -20,6 +20,7 @@ import kotlin.system.exitProcess
 @AndroidEntryPoint
 class HomeActivity : BaseActivity() {
     private val binding: ActivityHomeBinding by binding(R.layout.activity_home)
+
     @Inject
     lateinit var authViewModel: AuthenticationViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,11 @@ class HomeActivity : BaseActivity() {
         }
         authViewModel.setupFirebaseAuth()
         authViewModel.user.observe(this) {
-            Toast.makeText(this, "Welcome " + authViewModel.name.value.toString(), Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this,
+                "Welcome " + authViewModel.name.value.toString(),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
@@ -45,11 +50,12 @@ class HomeActivity : BaseActivity() {
         binding.menuOpenBtn.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
-        binding.navigationView.getHeaderView(0).findViewById<ImageButton>(R.id.menuCloseBtn).setOnClickListener {
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
-        }
+        binding.navigationView.getHeaderView(0).findViewById<ImageButton>(R.id.menuCloseBtn)
+            .setOnClickListener {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+            }
         binding.navigationView.setNavigationItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.logouttMenuItem -> {
                     authViewModel.logout()
                     finish()
