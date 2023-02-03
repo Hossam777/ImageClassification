@@ -8,4 +8,19 @@
     <string name="about_us">About Us</string>
     <string name="logout">Logout</string>
     <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="email">E-Mail</string>
+    <string name="signup">Signup</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="err_please_enter_name">Please Enter Name</string>
+    <string name="alert_title">Oooops</string>
+    <string name="close">Close</string>
+    <string name="err_no_internet">Please Open Internet Connection</string>
+    <string name="err_please_enter_title">Please Enter Title</string>
+    <string name="err_please_enter_mail">Please Enter Mail</string>
+    <string name="err_please_enter_password">Please Enter Password</string>
+    <string name="err_password_at_least">Password must be at least 6 characters</string>
+    <string name="err_please_enter_valid_mail">Please Enter valid E-Mail</string>
+    <string name="err_confirm_pass_wrong">Confirm Password is wrong</string>
 </resources>

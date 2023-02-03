@@ -1,25 +1,44 @@
 package com.example.imageclassification.presentation.homeactivity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import com.example.imageclassification.R
+import com.example.imageclassification.bases.BaseActivity
 import com.example.imageclassification.databinding.ActivityHomeBinding
-import com.example.imageclassification.presentation.authenticationactivities.LoginActivity
+import com.example.imageclassification.presentation.authenticationactivities.AuthenticationViewModel
+import com.google.firebase.auth.ktx.userProfileChangeRequest
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import kotlin.system.exitProcess
 
-class HomeActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityHomeBinding
-
+@AndroidEntryPoint
+class HomeActivity : BaseActivity() {
+    private val binding: ActivityHomeBinding by binding(R.layout.activity_home)
+    @Inject
+    lateinit var authViewModel: AuthenticationViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+        binding.executePendingBindings()
         binding.lifecycleOwner = this
         navigationMenuSetup()
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            add<ClassificationFragment>(R.id.navHostFragment)
+        }
+        authViewModel.setupFirebaseAuth()
+        authViewModel.user.observe(this) {
+            Toast.makeText(this, "Welcome " + authViewModel.name.value.toString(), Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onBackPressed() {
+        exitProcess(0)
     }
 
     private fun navigationMenuSetup() {
@@ -31,12 +50,13 @@ class HomeActivity : AppCompatActivity() {
         }
         binding.navigationView.setNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.logintMenuItem -> {
-                    startActivity(Intent(this, LoginActivity::class.java))
+                R.id.logouttMenuItem -> {
+                    authViewModel.logout()
+                    finish()
                 }
             }
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
-        binding.drawerLayout.closeDrawer(GravityCompat.START)
     }
 }

@@ -7,10 +7,135 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.authenticationactivities.LoginActivity">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/topViewBG"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="#4CAF50" />
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/topViewBG"
+                app:layout_constraintBottom_toBottomOf="@id/topViewBG"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:background="@color/transparent"
+                android:src="@drawable/baseline_menu_24" />
+            <TextView
+                android:id="@+id/menuOpenBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/topViewBG"
+                app:layout_constraintEnd_toEndOf="@id/topViewBG"
+                app:layout_constraintTop_toTopOf="@id/topViewBG"
+                app:layout_constraintBottom_toBottomOf="@id/topViewBG"
+                android:text="Login"
+                android:textSize="25sp"
+                android:textColor="#FFF" />
+            <TextView
+                android:id="@+id/welcomeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/topViewBG"
+                android:text="welcome"
+                android:textSize="30sp"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="#FF5722" />
+            <TextView
+                android:id="@+id/enterDataTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/welcomeTxt"
+                android:text="please Enter Data to Signup"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="#000" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tlmail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/enterDataTxt"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:hint="@string/email">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tlPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tlmail"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:hint="@string/password"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/loginBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tlPassword"
+                android:layout_marginVertical="10dp"
+                app:background="@drawable/btn_bg"
+                app:backgroundTint="#009688" />
+            <LinearLayout
+                android:id="@+id/signupLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/loginBtn"
+                android:layout_marginTop="10dp" >
+                <TextView
+                    android:id="@+id/toSignupTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To Signup Click" />
+                <TextView
+                    android:id="@+id/signupScreenBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Here"
+                    android:background="@color/white" />
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:visibility="gone"
+                android:layout_marginVertical="50dp"
+                app:layout_constraintTop_toBottomOf="@+id/signupLL"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

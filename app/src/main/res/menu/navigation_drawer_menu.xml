@@ -16,12 +16,7 @@
         android:title="@string/about_us"
         android:checkable="true"/>
     <item
-        android:id="@+id/logintMenuItem"
-        android:icon="@drawable/baseline_settings_24"
-        android:title="@string/login"
-        android:checkable="true"/>
-    <item
-        android:id="@+id/logoutMenuItem"
+        android:id="@+id/logouttMenuItem"
         android:icon="@drawable/baseline_settings_24"
         android:title="@string/logout"
         android:checkable="true"/>
