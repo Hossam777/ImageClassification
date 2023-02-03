@@ -11,12 +11,10 @@
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.homeactivity.HomeActivity"
-        tools:openDrawer="left">
+        tools:context=".presentation.homeactivity.HomeActivity">
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -24,19 +22,32 @@
                 <View
                     android:id="@+id/topViewBG"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="68dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:background="#4CAF50" />
+                    android:background="@color/green" />
                 <ImageButton
                     android:id="@+id/menuOpenBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="20dp"
+                    app:layout_constraintTop_toTopOf="@id/topViewBG"
+                    app:layout_constraintBottom_toBottomOf="@id/topViewBG"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@color/transparent"
-                    android:src="@drawable/baseline_menu_24" />
+                    android:src="@drawable/menu" />
+                <TextView
+                    android:id="@+id/titleTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/topViewBG"
+                    app:layout_constraintEnd_toEndOf="@id/topViewBG"
+                    app:layout_constraintTop_toTopOf="@id/menuOpenBtn"
+                    app:layout_constraintBottom_toBottomOf="@id/menuOpenBtn"
+                    android:text="@string/home_page"
+                    android:textSize="20sp"
+                    android:textColor="#FFF" />
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/navHostFragment"
                     android:name="com.example.imageclassification.presentation.homeactivity.ClassificationFragment"

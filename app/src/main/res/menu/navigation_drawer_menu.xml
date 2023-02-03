@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/settingsMenuItem"
-        android:icon="@drawable/baseline_settings_24"
+        android:icon="@drawable/settings"
         android:title="@string/settings"
         android:checkable="true"/>
     <item
         android:id="@+id/profileMenuItem"
-        android:icon="@drawable/baseline_settings_24"
+        android:icon="@drawable/profile"
         android:title="@string/profile"
         android:checkable="true"/>
     <item
         android:id="@+id/aboutMenuItem"
-        android:icon="@drawable/baseline_settings_24"
+        android:icon="@drawable/about"
         android:title="@string/about_us"
         android:checkable="true"/>
     <item
         android:id="@+id/logouttMenuItem"
-        android:icon="@drawable/baseline_settings_24"
+        android:icon="@drawable/logout"
         android:title="@string/logout"
         android:checkable="true"/>
 </menu>
