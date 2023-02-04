@@ -15,7 +15,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.imageclassification.R
 import com.example.imageclassification.databinding.FragmentClassificationBinding
 import com.example.imageclassification.ml.Model
@@ -128,8 +130,14 @@ class ClassificationFragment : Fragment() {
                 }
             }
             val classes = arrayOf("Apple", "Banana", "Orange")
-            binding.resultTxt.text = classes[maxPos]
-
+            var buildingID = ""
+            if(maxConfidence < 2.5){
+                buildingID = "7amra"
+            }else{
+                buildingID = classes[maxPos]
+            }
+            findNavController().navigate(R.id.navigateToResultFragment
+                , bundleOf("buildingID" to buildingID))
             // Releases model resources if no longer used.
             model.close()
         } catch (e: IOException) {

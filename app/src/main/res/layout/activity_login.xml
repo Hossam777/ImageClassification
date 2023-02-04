@@ -66,7 +66,7 @@
                 android:textColor="@color/black" />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tlmail"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/enterDataTxt"
@@ -77,26 +77,27 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tlPassword"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tlmail"
                 android:layout_marginVertical="40dp"
                 android:layout_marginHorizontal="26dp"
                 android:hint="@string/password"
+                app:passwordToggleTint="@color/green"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg"
+                    android:textColor="@color/black"
                     android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
             <Button
@@ -105,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/login"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tlPassword"

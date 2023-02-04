@@ -16,7 +16,7 @@
         android:title="@string/about_us"
         android:checkable="true"/>
     <item
-        android:id="@+id/logouttMenuItem"
+        android:id="@+id/logoutMenuItem"
         android:icon="@drawable/logout"
         android:title="@string/logout"
         android:checkable="true"/>

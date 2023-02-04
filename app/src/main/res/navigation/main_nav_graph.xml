@@ -3,8 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/classificationFragment">
-    <fragment android:id="@+id/classificationFragment"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.imageclassification.presentation.homeactivity.HomeFragment"
+        tools:layout="@layout/fragment_home" >
+        <action android:id="@+id/navigateToClassificationFragment"
+            app:destination="@+id/classificationFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/classificationFragment"
         android:name="com.example.imageclassification.presentation.homeactivity.ClassificationFragment"
-        tools:layout="@layout/fragment_classification" />
+        tools:layout="@layout/fragment_classification" >
+        <action android:id="@+id/navigateToResultFragment"
+            app:destination="@+id/resultFragment"
+            app:popUpTo="@id/classificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.imageclassification.presentation.homeactivity.ResultFragment"
+        tools:layout="@layout/fragment_result" >
+        <argument
+            android:name="buildingID"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
 </navigation>

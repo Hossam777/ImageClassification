@@ -2,14 +2,13 @@
     <string name="app_name">ImageClassification</string>
     <string name="launch_gallery">افتح المعرض</string>
     <string name="take_picture">القط صورة</string>
-    <string name="classified_as">Classified as:</string>
     <string name="settings">الاعدادات</string>
     <string name="profile">الملف الشخصى</string>
     <string name="about_us">عن التطبيق</string>
     <string name="logout">تسجيل خدوج</string>
     <string name="login">تسجيل دخول</string>
     <string name="name">الاسم</string>
-    <string name="email">البديد الالكتدونى</string>
+    <string name="email">البريد الالكتدونى</string>
     <string name="title">اللقب</string>
     <string name="signup">انشاء حساب</string>
     <string name="password">كلمة السر</string>
@@ -33,4 +32,9 @@
     <string name="welcome_text">welcome text</string>
     <string name="continue_">استمرار</string>
     <string name="home_page">الصفحة الرئيسية</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="description">عند الضغط على استمرار سيتم تحويلك لالتقاط صورة لأي مبنى من مباني كلية تربية نوعية و عرض جميع المعلومات الخاصة بهذا المبنى *يمكنك أيضاً اختيار صورة من معرض الصور الخاص بك*</string>
+    <string name="show_building_details">عرض البيانات</string>
+    <string name="hide">اخفاء</string>
 </resources>

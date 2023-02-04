@@ -28,10 +28,6 @@ class HomeActivity : BaseActivity() {
         binding.executePendingBindings()
         binding.lifecycleOwner = this
         navigationMenuSetup()
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            add<ClassificationFragment>(R.id.navHostFragment)
-        }
         authViewModel.setupFirebaseAuth()
         authViewModel.user.observe(this) {
             Toast.makeText(
@@ -42,9 +38,6 @@ class HomeActivity : BaseActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        exitProcess(0)
-    }
 
     private fun navigationMenuSetup() {
         binding.menuOpenBtn.setOnClickListener {
@@ -56,7 +49,7 @@ class HomeActivity : BaseActivity() {
             }
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.logouttMenuItem -> {
+                R.id.logoutMenuItem -> {
                     authViewModel.logout()
                     finish()
                 }

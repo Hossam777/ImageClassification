@@ -66,7 +66,7 @@
                 android:textColor="#000" />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tlName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/enterDataTxt"
@@ -82,12 +82,12 @@
                     android:id="@+id/etName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg"
+                    android:textColor="@color/black"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tlTitle"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -103,12 +103,12 @@
                     android:id="@+id/etTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg"
+                    android:textColor="@color/black"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tlMail"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tlName"
@@ -121,12 +121,12 @@
                     android:id="@+id/etMail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg"
+                    android:textColor="@color/black"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tlPassword"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tlMail"
@@ -134,18 +134,19 @@
                 android:layout_marginHorizontal="26dp"
                 android:textSize="14sp"
                 android:hint="@string/password"
+                app:passwordToggleTint="@color/green"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg"
+                    android:textColor="@color/black"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tlConfirmPassword"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tlPassword"
@@ -153,13 +154,14 @@
                 android:layout_marginHorizontal="26dp"
                 android:textSize="14sp"
                 android:hint="@string/confirm_password"
+                app:passwordToggleTint="@color/green"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg"
+                    android:textColor="@color/black"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
             <Button
@@ -167,6 +169,7 @@
                 android:layout_width="148dp"
                 android:layout_height="wrap_content"
                 android:text="@string/signup"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tlConfirmPassword"
