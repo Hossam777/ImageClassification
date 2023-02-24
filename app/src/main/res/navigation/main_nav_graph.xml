@@ -21,6 +21,14 @@
             app:popUpTo="@id/classificationFragment" />
         <action android:id="@+id/navigateToLiveDetection"
             app:destination="@+id/liveDetectionFragment"
+            app:popUpTo="@id/classificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/liveDetectionFragment"
+        android:name="com.example.imageclassification.presentation.homeactivity.LiveDetectionFragment"
+        tools:layout="@layout/fragment_live_detection" >
+        <action android:id="@+id/navigateToResultFragment"
+            app:destination="@+id/resultFragment"
             app:popUpTo="@id/liveDetectionFragment" />
     </fragment>
     <fragment
@@ -28,12 +36,8 @@
         android:name="com.example.imageclassification.presentation.homeactivity.ResultFragment"
         tools:layout="@layout/fragment_result" >
         <argument
-            android:name="buildingID"
-            app:argType="string"
-            android:defaultValue="" />
+            android:name="buildingIndex"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
-    <fragment
-        android:id="@+id/liveDetectionFragment"
-        android:name="com.example.imageclassification.presentation.homeactivity.LiveDetectionFragment"
-        tools:layout="@layout/fragment_live_detection" />
 </navigation>

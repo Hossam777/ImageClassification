@@ -3,6 +3,7 @@ package com.example.imageclassification.di
 import android.app.Application
 import android.content.Context
 import com.example.imageclassification.data.local.UserSessionManager
+import com.example.imageclassification.presentation.homeactivity.ImageClassifier
 import com.example.imageclassification.utils.NetworkManager
 import dagger.Module
 import dagger.Provides
@@ -28,5 +29,9 @@ object AppModule {
     @Singleton
     fun provideUserSessionManager(context: Context): UserSessionManager =
         UserSessionManager(context)
+    @Provides
+    @Singleton
+    fun provideImageClassifier(context: Context): ImageClassifier =
+        ImageClassifier(context)
 
 }

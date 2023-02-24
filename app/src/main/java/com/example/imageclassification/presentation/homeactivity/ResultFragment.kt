@@ -9,7 +9,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.imageclassification.R
+import com.example.imageclassification.data.local.buildings
 import com.example.imageclassification.databinding.FragmentResultBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +34,6 @@ class ResultFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater
             , R.layout.fragment_result, container, false)
         resultBottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet as ConstraintLayout)
-        binding.bottomSheet.findViewById<TextView>(R.id.buildingDetailsTV).text = arguments?.getString("buildingID")
         binding.buildingIV.setImageResource(R.drawable.ain_shams)
         resultBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         binding.showBuildingDetails.setOnClickListener {
@@ -41,7 +42,19 @@ class ResultFragment : Fragment() {
         binding.bottomSheet.findViewById<Button>(R.id.hideBuildingDetails).setOnClickListener {
             resultBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }
+        val pos = arguments?.getInt("buildingIndex")
+
+        pos?.let {
+            if(pos == -1)
+                findNavController().popBackStack()
+            showBuildingDetails(pos)
+        }
         return binding.root
+    }
+
+    private fun showBuildingDetails(pos: Int) {
+        binding.bottomSheet.findViewById<TextView>(R.id.buildingDetailsTV).text =
+            buildings[pos].name
     }
 
     companion object {

@@ -28,6 +28,7 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ClassificationFragment : Fragment() {
@@ -35,7 +36,8 @@ class ClassificationFragment : Fragment() {
     companion object {
         fun newInstance() = ClassificationFragment()
     }
-
+    @Inject
+    lateinit var imageClassifier: ImageClassifier
     private lateinit var viewModel: ClassificationViewModel
     val imageSize = 32
     lateinit var binding: FragmentClassificationBinding
@@ -56,18 +58,13 @@ class ClassificationFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.takePictureTxt.setOnClickListener {
-            if (activity?.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                captureImage.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
-            } else {
-                requestPermissions(arrayOf(Manifest.permission.CAMERA), 100)
-            }
+            findNavController().navigate(R.id.navigateToLiveDetection)
         }
         binding.launchGalleryTxt.setOnClickListener {
-            findNavController().navigate(R.id.navigateToLiveDetection)
-            //getImageFromGallery.launch(Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI))
+            getImageFromGallery.launch(Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI))
         }
     }
-    private val captureImage = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    /*private val captureImage = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         it?.let{
             it.data?.extras?.get("data").let {
                 var image = it as Bitmap
@@ -78,73 +75,23 @@ class ClassificationFragment : Fragment() {
                 classifyImage(image)
             }
         }
-    }
+    }*/
     private val getImageFromGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        it?.let{
-            it.data?.data.let {
+        it?.let{ activityResult ->
+            activityResult.data?.data.let { uri ->
                 var image: Bitmap
                 try {
-                    image = MediaStore.Images.Media.getBitmap(activity?.getContentResolver(), it)
-                    binding.imageIV.setImageBitmap(image);
-                    image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false);
-                    classifyImage(image);
+                    image = MediaStore.Images.Media.getBitmap(activity?.getContentResolver(), uri)
+                    binding.imageIV.setImageBitmap(image)
+                    val dimension = Math.min(image.width, image.height)
+                    var image = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
+                    image = Bitmap.createScaledBitmap(image, 32, 32, false)
+                    findNavController().navigate(R.id.navigateToResultFragment
+                        , bundleOf("buildingIndex" to imageClassifier.classifyImage(image, 3.5f)))
                 }catch (e: IOException) {
                     e.printStackTrace();
                 }
             }
-        }
-    }
-
-    fun classifyImage(image: Bitmap) {
-        try {
-            val model: Model = Model.newInstance(activity?.applicationContext!!)
-
-            // Creates inputs for reference.
-            val inputFeature0 =
-                TensorBuffer.createFixedSize(intArrayOf(1, 32, 32, 3), DataType.FLOAT32)
-            val byteBuffer: ByteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
-            byteBuffer.order(ByteOrder.nativeOrder())
-            val intValues = IntArray(imageSize * imageSize)
-            println(image.width)
-            println(image.height)
-            image.getPixels(intValues, 0, image.width, 0, 0, image.width, image.height)
-            var pixel = 0
-            //iterate over each pixel and extract R, G, and B values. Add those values individually to the byte buffer.
-            for (i in 0 until imageSize) {
-                for (j in 0 until imageSize) {
-                    val `val` = intValues[pixel++] // RGB
-                    byteBuffer.putFloat((`val` shr 16 and 0xFF) * (1f / 1))
-                    byteBuffer.putFloat((`val` shr 8 and 0xFF) * (1f / 1))
-                    byteBuffer.putFloat((`val` and 0xFF) * (1f / 1))
-                }
-            }
-            inputFeature0.loadBuffer(byteBuffer)
-            // Runs model inference and gets result.
-            val outputs: Model.Outputs = model.process(inputFeature0)
-            val outputFeature0: TensorBuffer = outputs.getOutputFeature0AsTensorBuffer()
-            val confidences = outputFeature0.floatArray
-            // find the index of the class with the biggest confidence.
-            var maxPos = 0
-            var maxConfidence = 0f
-            for (i in confidences.indices) {
-                if (confidences[i] > maxConfidence) {
-                    maxConfidence = confidences[i]
-                    maxPos = i
-                }
-            }
-            val classes = arrayOf("Apple", "Banana", "Orange")
-            var buildingID = ""
-            if(maxConfidence < 2.5){
-                buildingID = "7amra"
-            }else{
-                buildingID = classes[maxPos]
-            }
-            findNavController().navigate(R.id.navigateToResultFragment
-                , bundleOf("buildingID" to buildingID))
-            // Releases model resources if no longer used.
-            model.close()
-        } catch (e: IOException) {
-            // TODO Handle the exception
         }
     }
 }

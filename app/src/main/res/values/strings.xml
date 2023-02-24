@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ImageClassification</string>
     <string name="launch_gallery">افتح المعرض</string>
-    <string name="take_picture">القط صورة</string>
+    <string name="take_picture">كاميرا</string>
     <string name="settings">الاعدادات</string>
     <string name="profile">الملف الشخصى</string>
     <string name="about_us">عن التطبيق</string>
