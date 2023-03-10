@@ -4,62 +4,49 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
+import android.graphics.*
+import android.media.Image
 import android.media.ThumbnailUtils
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity.END
-import android.view.Gravity.START
+import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.camera.core.*
+import androidx.camera.core.Camera
 import androidx.camera.core.ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888
+import androidx.camera.core.ImageAnalysis.OUTPUT_IMAGE_FORMAT_YUV_420_888
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.imageclassification.R
+import com.example.imageclassification.data.local.IMG_SIZE
+import com.example.imageclassification.data.local.SUCCESS_RATE_CAMERA
 import com.example.imageclassification.data.local.buildings
 import com.example.imageclassification.databinding.FragmentLiveDetectionBinding
-import com.example.imageclassification.ml.Model
-import com.example.imageclassification.presentation.homeactivity.objectdetection.ObjectDetectorHelper
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.common.util.concurrent.ListenableFuture
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.common.ops.CastOp
-import org.tensorflow.lite.support.common.ops.NormalizeOp
-import org.tensorflow.lite.support.common.ops.QuantizeOp
-import org.tensorflow.lite.support.image.ImageProcessor
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.image.ops.ResizeOp
-import org.tensorflow.lite.support.image.ops.ResizeOp.ResizeMethod
-import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp
-import org.tensorflow.lite.support.image.ops.Rot90Op
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import org.tensorflow.lite.task.vision.detector.Detection
-import java.io.IOException
+import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class LiveDetectionFragment : Fragment(){
@@ -193,9 +180,9 @@ class LiveDetectionFragment : Fragment(){
                 .build()
         imageAnalyzer =
             ImageAnalysis.Builder()
-                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
-                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .setOutputImageFormat(OUTPUT_IMAGE_FORMAT_RGBA_8888)
+                .setTargetResolution(Size(IMG_SIZE, IMG_SIZE))
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
                 .also {
                     it.setAnalyzer(cameraExecutor) { image ->
@@ -208,11 +195,11 @@ class LiveDetectionFragment : Fragment(){
                         }
                         try {
                             image.use { bitmapBuffer.copyPixelsFromBuffer(image.planes[0].buffer) }
-                            val dimension = Math.min(image.width, image.height)
+                            val dimension = image.width.coerceAtMost(image.height)
                             var imageScaled = ThumbnailUtils.extractThumbnail(bitmapBuffer, dimension, dimension)
-                            imageScaled = Bitmap.createScaledBitmap(imageScaled, 32, 32, false)
-                            imageClassifier.classifyImage(imageScaled, 3.5f).let {index ->
-                                //println(index)
+                            imageScaled = Bitmap.createScaledBitmap(imageScaled, IMG_SIZE, IMG_SIZE, false)
+                            imageClassifier.classifyImage(
+                                imageScaled, SUCCESS_RATE_CAMERA).let { index ->
                                 if(index != -1){
                                     activity?.runOnUiThread { buidlingsAdpater.addBuilding(buildings[index]) }
                                 }

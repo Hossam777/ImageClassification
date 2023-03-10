@@ -39,8 +39,8 @@ class BuildingsRecyclerAdapter (private val onEmptyList: () -> Unit
     }
 
     override fun onBindViewHolder(holder: BuildingRecyclerHolder, position: Int) {
-        holder.binding.buildingNameTV.text = buildings[position].name
-        holder.binding.buidlingIV.setImageResource(buildings[position].photo)
+        holder.binding.buildingNameTV.text = buildingsList[position].name
+        holder.binding.buidlingIV.setImageResource(buildingsList[position].photo)
         holder.binding.root.setOnClickListener { onItemClicked(position) }
     }
 

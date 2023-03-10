@@ -13,12 +13,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.imageclassification.R
+import com.example.imageclassification.data.local.IMG_SIZE
+import com.example.imageclassification.data.local.SUCCESS_RATE_IMG
 import com.example.imageclassification.databinding.FragmentClassificationBinding
 import com.example.imageclassification.ml.Model
 import dagger.hilt.android.AndroidEntryPoint
@@ -81,13 +84,17 @@ class ClassificationFragment : Fragment() {
             activityResult.data?.data.let { uri ->
                 var image: Bitmap
                 try {
-                    image = MediaStore.Images.Media.getBitmap(activity?.getContentResolver(), uri)
+                    image = MediaStore.Images.Media.getBitmap(activity?.contentResolver, uri)
                     binding.imageIV.setImageBitmap(image)
                     val dimension = Math.min(image.width, image.height)
-                    var image = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
-                    image = Bitmap.createScaledBitmap(image, 32, 32, false)
+                    image = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
+                    image = Bitmap.createScaledBitmap(image, IMG_SIZE, IMG_SIZE, false)
+                    val succRate = imageClassifier.classifyImage(image, SUCCESS_RATE_IMG)
+                    if(succRate != -1){
                     findNavController().navigate(R.id.navigateToResultFragment
-                        , bundleOf("buildingIndex" to imageClassifier.classifyImage(image, 3.5f)))
+                        , bundleOf("buildingIndex" to succRate))}
+                    else
+                        Toast.makeText(requireContext(), "Undefined", Toast.LENGTH_SHORT).show()
                 }catch (e: IOException) {
                     e.printStackTrace();
                 }

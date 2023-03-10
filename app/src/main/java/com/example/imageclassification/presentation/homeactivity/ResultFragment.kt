@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
@@ -45,14 +46,18 @@ class ResultFragment : Fragment() {
         val pos = arguments?.getInt("buildingIndex")
 
         pos?.let {
-            if(pos == -1)
+            if(pos == -1){
+                Toast.makeText(requireContext(), "Undefined", Toast.LENGTH_SHORT).show()
                 findNavController().popBackStack()
+            }
+            else
             showBuildingDetails(pos)
         }
         return binding.root
     }
 
     private fun showBuildingDetails(pos: Int) {
+        binding.buildingIV.setImageResource(buildings[pos].photo)
         binding.bottomSheet.findViewById<TextView>(R.id.buildingDetailsTV).text =
             buildings[pos].name
     }

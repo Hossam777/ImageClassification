@@ -3,7 +3,12 @@ package com.example.imageclassification.presentation.homeactivity
 import android.content.Context
 import android.graphics.Bitmap
 import android.media.ThumbnailUtils
-import com.example.imageclassification.ml.Model
+import androidx.camera.core.ImageProxy
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
+import com.example.imageclassification.data.local.IMG_SIZE
+import com.example.imageclassification.ml.Buildings
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.IOException
@@ -11,31 +16,29 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 class ImageClassifier(context: Context) {
-    private var model: Model
-    private val imageSize = 32
+    private var model: Buildings
     init {
-        model = Model.newInstance(context)
+        model = Buildings.newInstance(context)
     }
     fun classifyImage(image: Bitmap, successRate: Float): Int {
         try {
             val inputFeature0 =
-                TensorBuffer.createFixedSize(intArrayOf(1, 32, 32, 3), DataType.FLOAT32)
-            val byteBuffer: ByteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
+                TensorBuffer.createFixedSize(intArrayOf(1, IMG_SIZE, IMG_SIZE, 3), DataType.FLOAT32)
+            val byteBuffer: ByteBuffer = ByteBuffer.allocateDirect(4 * IMG_SIZE * IMG_SIZE * 3)
             byteBuffer.order(ByteOrder.nativeOrder())
-            val intValues = IntArray(imageSize * imageSize)
-            image.getPixels(intValues, 0, image.width, 0, 0, image.width, image.height)
-            var pixel = 0
-            for (i in 0 until imageSize) {
-                for (j in 0 until imageSize) {
-                    val `val` = intValues[pixel++] // RGB
-                    byteBuffer.putFloat((`val` shr 16 and 0xFF) * (1f / 1))
-                    byteBuffer.putFloat((`val` shr 8 and 0xFF) * (1f / 1))
-                    byteBuffer.putFloat((`val` and 0xFF) * (1f / 1))
+            //val intValues = IntArray(IMG_SIZE * IMG_SIZE)
+            //image.getPixels(intValues, 0, image.width, 0, 0, image.width, image.height)
+            for (i in 0 until IMG_SIZE) {
+                for (j in 0 until IMG_SIZE) {
+                    byteBuffer.putFloat(image.getPixel(i, j).red.toFloat())
+                    byteBuffer.putFloat(image.getPixel(i, j).green.toFloat())
+                    byteBuffer.putFloat(image.getPixel(i, j).blue.toFloat())
                 }
             }
             inputFeature0.loadBuffer(byteBuffer)
-            val outputs: Model.Outputs = model.process(inputFeature0)
-            val outputFeature0: TensorBuffer = outputs.getOutputFeature0AsTensorBuffer()
+            //println(inputFeature0.floatArray.joinToString(","))
+            val outputs: Buildings.Outputs = model.process(inputFeature0)
+            val outputFeature0: TensorBuffer = outputs.outputFeature0AsTensorBuffer
             val confidences = outputFeature0.floatArray
             var maxPos = 0
             var maxConfidence = 0f
@@ -45,17 +48,17 @@ class ImageClassifier(context: Context) {
                     maxPos = i
                 }
             }
-            //println("values : " + confidences.joinToString(", "))
-            //println("--------------------------------------")
+            println("values : " + confidences.joinToString(", "))
+            //println("max : " + maxConfidence)
+            println("--------------------------------------")
             return if(maxConfidence < successRate){
                 -1
             }else{
                 maxPos
             }
         } catch (e: IOException) {
-            // TODO Handle the exception
+            println(e.localizedMessage)
         }
         return -1
     }
-
 }
