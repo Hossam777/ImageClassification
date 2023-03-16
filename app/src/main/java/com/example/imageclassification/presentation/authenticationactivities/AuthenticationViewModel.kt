@@ -1,13 +1,11 @@
 package com.example.imageclassification.presentation.authenticationactivities
 
-import android.app.Activity
 import androidx.lifecycle.MutableLiveData
 import com.example.imageclassification.bases.BaseViewModel
 import com.example.imageclassification.data.local.UserSessionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

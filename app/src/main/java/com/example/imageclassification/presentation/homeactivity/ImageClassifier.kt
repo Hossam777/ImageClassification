@@ -2,13 +2,11 @@ package com.example.imageclassification.presentation.homeactivity
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.media.ThumbnailUtils
-import androidx.camera.core.ImageProxy
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
 import com.example.imageclassification.data.local.IMG_SIZE
-import com.example.imageclassification.ml.Buildings
+import com.example.imageclassification.ml.Model
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.IOException
@@ -16,9 +14,9 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 class ImageClassifier(context: Context) {
-    private var model: Buildings
+    private var model: Model
     init {
-        model = Buildings.newInstance(context)
+        model = Model.newInstance(context)
     }
     fun classifyImage(image: Bitmap, successRate: Float): Int {
         try {
@@ -37,7 +35,7 @@ class ImageClassifier(context: Context) {
             }
             inputFeature0.loadBuffer(byteBuffer)
             //println(inputFeature0.floatArray.joinToString(","))
-            val outputs: Buildings.Outputs = model.process(inputFeature0)
+            val outputs: Model.Outputs = model.process(inputFeature0)
             val outputFeature0: TensorBuffer = outputs.outputFeature0AsTensorBuffer
             val confidences = outputFeature0.floatArray
             var maxPos = 0
@@ -48,9 +46,9 @@ class ImageClassifier(context: Context) {
                     maxPos = i
                 }
             }
-            println("values : " + confidences.joinToString(", "))
+            //println("values : " + confidences.joinToString(", "))
             //println("max : " + maxConfidence)
-            println("--------------------------------------")
+            //println("--------------------------------------")
             return if(maxConfidence < successRate){
                 -1
             }else{

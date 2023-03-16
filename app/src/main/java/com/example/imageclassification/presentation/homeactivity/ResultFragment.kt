@@ -44,7 +44,6 @@ class ResultFragment : Fragment() {
             resultBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }
         val pos = arguments?.getInt("buildingIndex")
-
         pos?.let {
             if(pos == -1){
                 Toast.makeText(requireContext(), "Undefined", Toast.LENGTH_SHORT).show()

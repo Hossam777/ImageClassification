@@ -12,7 +12,6 @@ import com.example.imageclassification.databinding.ActivityLoginBinding
 import com.example.imageclassification.presentation.homeactivity.HomeActivity
 import com.example.imageclassification.utils.NetworkManager
 import com.example.imageclassification.utils.hideKeyboard
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

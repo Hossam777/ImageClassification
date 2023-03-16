@@ -1,8 +1,6 @@
 package com.example.imageclassification.presentation.homeactivity
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.media.ThumbnailUtils
 import android.os.Build
@@ -23,14 +21,8 @@ import com.example.imageclassification.R
 import com.example.imageclassification.data.local.IMG_SIZE
 import com.example.imageclassification.data.local.SUCCESS_RATE_IMG
 import com.example.imageclassification.databinding.FragmentClassificationBinding
-import com.example.imageclassification.ml.Model
 import dagger.hilt.android.AndroidEntryPoint
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.IOException
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -89,10 +81,10 @@ class ClassificationFragment : Fragment() {
                     val dimension = Math.min(image.width, image.height)
                     image = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
                     image = Bitmap.createScaledBitmap(image, IMG_SIZE, IMG_SIZE, false)
-                    val succRate = imageClassifier.classifyImage(image, SUCCESS_RATE_IMG)
-                    if(succRate != -1){
+                    val index = imageClassifier.classifyImage(image, SUCCESS_RATE_IMG)
+                    if(index != -1){
                     findNavController().navigate(R.id.navigateToResultFragment
-                        , bundleOf("buildingIndex" to succRate))}
+                        , bundleOf("buildingIndex" to index))}
                     else
                         Toast.makeText(requireContext(), "Undefined", Toast.LENGTH_SHORT).show()
                 }catch (e: IOException) {

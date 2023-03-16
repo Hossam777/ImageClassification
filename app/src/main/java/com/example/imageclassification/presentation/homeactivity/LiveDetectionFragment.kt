@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.graphics.*
-import android.media.Image
 import android.media.ThumbnailUtils
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +16,6 @@ import android.widget.Toast
 import androidx.camera.core.*
 import androidx.camera.core.Camera
 import androidx.camera.core.ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888
-import androidx.camera.core.ImageAnalysis.OUTPUT_IMAGE_FORMAT_YUV_420_888
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -37,11 +35,6 @@ import com.example.imageclassification.databinding.FragmentLiveDetectionBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.common.util.concurrent.ListenableFuture
 import dagger.hilt.android.AndroidEntryPoint
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.io.ByteArrayOutputStream
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -94,10 +87,9 @@ class LiveDetectionFragment : Fragment(){
             buildingsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }, {
             buildingsBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-        }, {
+        }, {index ->
             findNavController().navigate(R.id.navigateToResultFragment
-                , bundleOf("buildingIndex" to it)
-            )
+                , bundleOf("buildingIndex" to index))
         })
         binding.buildingsRV.adapter = buidlingsAdpater
         binding.buildingsRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -175,13 +167,12 @@ class LiveDetectionFragment : Fragment(){
             CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
         preview =
             Preview.Builder()
-                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
-                .setTargetRotation(binding.cameraPreview.display.rotation)
+                .setTargetResolution(Size(3000, 3000))
                 .build()
         imageAnalyzer =
             ImageAnalysis.Builder()
                 .setOutputImageFormat(OUTPUT_IMAGE_FORMAT_RGBA_8888)
-                .setTargetResolution(Size(IMG_SIZE, IMG_SIZE))
+                .setTargetResolution(Size(3000, 3000))
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
                 .also {

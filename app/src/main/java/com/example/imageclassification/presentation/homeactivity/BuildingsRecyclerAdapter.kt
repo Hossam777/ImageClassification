@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.imageclassification.data.local.Building
-import com.example.imageclassification.data.local.buildings
 import com.example.imageclassification.databinding.BuldingItemBinding
 
 class BuildingsRecyclerAdapter (private val onEmptyList: () -> Unit
-                                , private val onAdded: () -> Unit
+                                , private val onAdded: (Int) -> Unit
                                 , private val onItemClicked: (Int) -> Unit)
     : RecyclerView.Adapter<BuildingsRecyclerAdapter.BuildingRecyclerHolder>(){
 
@@ -17,7 +16,7 @@ class BuildingsRecyclerAdapter (private val onEmptyList: () -> Unit
     fun addBuilding (building: Building){
         if (!buildingsList.contains(building)){
             buildingsList.add(building)
-            onAdded()
+            onAdded(building.id)
             notifyDataSetChanged()
         }
     }
@@ -41,7 +40,7 @@ class BuildingsRecyclerAdapter (private val onEmptyList: () -> Unit
     override fun onBindViewHolder(holder: BuildingRecyclerHolder, position: Int) {
         holder.binding.buildingNameTV.text = buildingsList[position].name
         holder.binding.buidlingIV.setImageResource(buildingsList[position].photo)
-        holder.binding.root.setOnClickListener { onItemClicked(position) }
+        holder.binding.root.setOnClickListener { onItemClicked(buildingsList[position].id) }
     }
 
 
