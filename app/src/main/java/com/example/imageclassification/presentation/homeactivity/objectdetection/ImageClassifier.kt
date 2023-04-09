@@ -1,4 +1,4 @@
-package com.example.imageclassification.presentation.homeactivity
+package com.example.imageclassification.presentation.homeactivity.objectdetection
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -18,7 +18,7 @@ class ImageClassifier(context: Context) {
     init {
         model = Model.newInstance(context)
     }
-    fun classifyImage(image: Bitmap, successRate: Float): Int {
+    fun classifyImage(image: Bitmap, successRate: Float): FloatArray {
         try {
             val inputFeature0 =
                 TensorBuffer.createFixedSize(intArrayOf(1, IMG_SIZE, IMG_SIZE, 3), DataType.FLOAT32)
@@ -46,17 +46,17 @@ class ImageClassifier(context: Context) {
                     maxPos = i
                 }
             }
-            //println("values : " + confidences.joinToString(", "))
+            println("values : " + confidences.joinToString(", "))
             //println("max : " + maxConfidence)
             //println("--------------------------------------")
             return if(maxConfidence < successRate){
-                -1
+                floatArrayOf(-1f, maxConfidence)
             }else{
-                maxPos
+                floatArrayOf(maxPos.toFloat(), maxConfidence)
             }
         } catch (e: IOException) {
             println(e.localizedMessage)
         }
-        return -1
+        return floatArrayOf(-1f, 0f)
     }
 }

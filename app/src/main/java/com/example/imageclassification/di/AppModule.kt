@@ -3,7 +3,7 @@ package com.example.imageclassification.di
 import android.app.Application
 import android.content.Context
 import com.example.imageclassification.data.local.UserSessionManager
-import com.example.imageclassification.presentation.homeactivity.ImageClassifier
+import com.example.imageclassification.presentation.homeactivity.objectdetection.ImageClassifier
 import com.example.imageclassification.utils.NetworkManager
 import dagger.Module
 import dagger.Provides

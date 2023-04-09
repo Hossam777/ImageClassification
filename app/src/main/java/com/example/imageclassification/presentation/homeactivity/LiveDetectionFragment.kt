@@ -30,9 +30,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.imageclassification.R
 import com.example.imageclassification.data.local.IMG_SIZE
 import com.example.imageclassification.data.local.SUCCESS_RATE_CAMERA
+import com.example.imageclassification.data.local.UserSessionManager
 import com.example.imageclassification.data.local.buildings
 import com.example.imageclassification.databinding.FragmentLiveDetectionBinding
+import com.example.imageclassification.presentation.homeactivity.objectdetection.ImageClassifier
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.Snackbar
 import com.google.common.util.concurrent.ListenableFuture
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -50,6 +53,8 @@ class LiveDetectionFragment : Fragment(){
     }
     @Inject
     lateinit var imageClassifier: ImageClassifier
+    @Inject
+    lateinit var userSessionManager: UserSessionManager
     private lateinit var bitmapBuffer: Bitmap
     private var imageAnalyzer: ImageAnalysis? = null
     private var camera: Camera? = null
@@ -63,6 +68,8 @@ class LiveDetectionFragment : Fragment(){
     private lateinit var cameraProviderFuture : ListenableFuture<ProcessCameraProvider>
     lateinit var buildingsBottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var buidlingsAdpater: BuildingsRecyclerAdapter
+    private lateinit var snackbar: Snackbar
+    private var lastDetectionRatio = 0.0f
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -87,7 +94,8 @@ class LiveDetectionFragment : Fragment(){
             buildingsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }, {
             buildingsBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-        }, {index ->
+        }, {index, image ->
+            image?.let { userSessionManager.processedImage = image }
             findNavController().navigate(R.id.navigateToResultFragment
                 , bundleOf("buildingIndex" to index))
         })
@@ -187,12 +195,18 @@ class LiveDetectionFragment : Fragment(){
                         try {
                             image.use { bitmapBuffer.copyPixelsFromBuffer(image.planes[0].buffer) }
                             val dimension = image.width.coerceAtMost(image.height)
-                            var imageScaled = ThumbnailUtils.extractThumbnail(bitmapBuffer, dimension, dimension)
-                            imageScaled = Bitmap.createScaledBitmap(imageScaled, IMG_SIZE, IMG_SIZE, false)
-                            imageClassifier.classifyImage(
-                                imageScaled, SUCCESS_RATE_CAMERA).let { index ->
-                                if(index != -1){
-                                    activity?.runOnUiThread { buidlingsAdpater.addBuilding(buildings[index]) }
+                            val imageBitmap = ThumbnailUtils.extractThumbnail(bitmapBuffer, dimension, dimension)
+                            val imageScaled = Bitmap.createScaledBitmap(imageBitmap, IMG_SIZE, IMG_SIZE, false)
+                            imageClassifier.classifyImage(imageScaled, SUCCESS_RATE_CAMERA).let { outputArr ->
+                                if(outputArr[1] > 0.9f)
+                                showMessage("اقتربت جداً")
+                                else if(outputArr[1] > 0.5f)
+                                    showMessage("اقتربت، ركز على المبنى")
+                                else
+                                    showMessage("لا يمكن تحديده")
+                                lastDetectionRatio = outputArr[1]
+                                if(outputArr[0] != -1f){
+                                    activity?.runOnUiThread { buidlingsAdpater.addBuilding(buildings[outputArr[0].toInt()], imageBitmap) }
                                 }
                             }
                         } catch (e: java.lang.Exception){
@@ -207,5 +221,8 @@ class LiveDetectionFragment : Fragment(){
         } catch (exc: Exception) {
             Log.e(TAG, "Use case binding failed", exc)
         }
+    }
+    private fun showMessage(message: String) {
+        binding.messageTxt.text = message
     }
 }

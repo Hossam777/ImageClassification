@@ -5,26 +5,30 @@ import com.example.imageclassification.R
 val buildings: List<Building> = mutableListOf(
     Building(
         0,
+        "القلعة",
         "Castle",
-        "Castle",
-        R.drawable.castle_thumb
+        R.drawable.castle_thumb,
+        null
     ),
     Building(
         1,
+        "مبنى التكتنولوجيا",
         "Main",
-        "Main",
-        R.drawable.main_thumb
+        R.drawable.main_thumb,
+        null
     ),
     Building(
         2,
+        "المدرجات",
         "Section",
-        "Section",
-        R.drawable.section_thumb
+        R.drawable.section_thumb,
+        null
     ),
     Building(
         3,
+        "مسرح طلعت حرب",
         "Theater",
-        "Theater",
-        R.drawable.theater_thumb
+        R.drawable.theater_thumb,
+        null
     ),
 )

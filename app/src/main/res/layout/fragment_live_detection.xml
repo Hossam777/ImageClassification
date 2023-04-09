@@ -15,7 +15,16 @@
         <androidx.camera.view.PreviewView
             android:id="@+id/cameraPreview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" /><!--
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/messageTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/green" />
+        <!--
         <com.example.imageclassification.presentation.homeactivity.objectdetection.OverlayView
             android:id="@+id/overlay"
             android:layout_height="match_parent"

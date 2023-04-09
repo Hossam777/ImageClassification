@@ -12,14 +12,18 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.imageclassification.R
+import com.example.imageclassification.data.local.UserSessionManager
 import com.example.imageclassification.data.local.buildings
 import com.example.imageclassification.databinding.FragmentResultBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ResultFragment : Fragment() {
 
+    @Inject
+    lateinit var userSessionManager: UserSessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +39,6 @@ class ResultFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater
             , R.layout.fragment_result, container, false)
         resultBottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet as ConstraintLayout)
-        binding.buildingIV.setImageResource(R.drawable.ain_shams)
         resultBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         binding.showBuildingDetails.setOnClickListener {
             resultBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
@@ -46,7 +49,7 @@ class ResultFragment : Fragment() {
         val pos = arguments?.getInt("buildingIndex")
         pos?.let {
             if(pos == -1){
-                Toast.makeText(requireContext(), "Undefined", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "لا ", Toast.LENGTH_SHORT).show()
                 findNavController().popBackStack()
             }
             else
@@ -56,7 +59,7 @@ class ResultFragment : Fragment() {
     }
 
     private fun showBuildingDetails(pos: Int) {
-        binding.buildingIV.setImageResource(buildings[pos].photo)
+        binding.buildingIV.setImageBitmap(userSessionManager.processedImage)
         binding.bottomSheet.findViewById<TextView>(R.id.buildingDetailsTV).text =
             buildings[pos].name
     }

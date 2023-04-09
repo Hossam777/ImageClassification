@@ -2,6 +2,7 @@ package com.example.imageclassification.data.local
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import com.example.imageclassification.utils.SingletonHolder
 
 class UserSessionManager(context: Context) {
@@ -14,14 +15,8 @@ class UserSessionManager(context: Context) {
         editor = sharedPreferences.edit()
         editor.apply()
     }
-    var accessToken : String
-        get() {
-            return "Bearer "+ sharedPreferences.getString("AccessToken","")?:""
-        }
-        set(value) {
-            editor.putString("AccessToken", value)
-            editor.commit()
-        }
+    lateinit var processedImage: Bitmap
+
     var isLoggedIn : Boolean
         get() {
             return sharedPreferences.getBoolean("isLoggedIn",false)
@@ -31,7 +26,6 @@ class UserSessionManager(context: Context) {
             editor.commit()
         }
     fun logout() {
-        accessToken = ""
         isLoggedIn = false
     }
     companion object : SingletonHolder<UserSessionManager, Context>(::UserSessionManager){

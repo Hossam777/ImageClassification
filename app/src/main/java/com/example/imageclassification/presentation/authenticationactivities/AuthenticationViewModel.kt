@@ -1,6 +1,7 @@
 package com.example.imageclassification.presentation.authenticationactivities
 
 import androidx.lifecycle.MutableLiveData
+import com.example.imageclassification.R
 import com.example.imageclassification.bases.BaseViewModel
 import com.example.imageclassification.data.local.UserSessionManager
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +19,7 @@ class AuthenticationViewModel @Inject constructor(
     private lateinit var db: FirebaseFirestore
     var isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
     var errMessage: MutableLiveData<String> = MutableLiveData()
+    var messageToUser: MutableLiveData<String> = MutableLiveData()
     var user: MutableLiveData<FirebaseUser?> = MutableLiveData()
     var name: MutableLiveData<String> = MutableLiveData()
     fun setupFirebaseAuth() {
@@ -87,6 +89,20 @@ class AuthenticationViewModel @Inject constructor(
                 } else {
                     errMessage.postValue(it.exception?.message)
                     println("createUserWithEmail:failure" + it.exception)
+                    isLoading.postValue(false)
+                }
+            }
+    }
+    fun sendResetPasswordEmail(email: String, message: String) {
+        isLoading.postValue(true)
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    messageToUser.postValue(message)
+                    isLoading.postValue(false)
+                } else {
+                    errMessage.postValue(it.exception?.message)
+                    println("forgetPassword:failure" + it.exception)
                     isLoading.postValue(false)
                 }
             }

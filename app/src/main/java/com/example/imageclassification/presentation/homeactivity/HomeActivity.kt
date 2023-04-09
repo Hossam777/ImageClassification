@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.core.view.get
+import androidx.navigation.findNavController
 import com.example.imageclassification.R
 import com.example.imageclassification.bases.BaseActivity
 import com.example.imageclassification.databinding.ActivityHomeBinding
@@ -14,6 +16,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeActivity : BaseActivity() {
     private val binding: ActivityHomeBinding by binding(R.layout.activity_home)
+    private var aboutFragmentIsVisible = false
 
     @Inject
     lateinit var authViewModel: AuthenticationViewModel
@@ -30,8 +33,8 @@ class HomeActivity : BaseActivity() {
                 Toast.LENGTH_LONG
             ).show()
         }
+        binding.navigationView.menu[0].isChecked = true
     }
-
 
     private fun navigationMenuSetup() {
         binding.menuOpenBtn.setOnClickListener {
@@ -43,6 +46,15 @@ class HomeActivity : BaseActivity() {
             }
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
+                R.id.homeMenuItem -> {
+                    if(aboutFragmentIsVisible)
+                        findNavController(R.id.navHostFragment).popBackStack()
+                    aboutFragmentIsVisible = false
+                }
+                R.id.aboutMenuItem -> {
+                    findNavController(R.id.navHostFragment).navigate("about")
+                    aboutFragmentIsVisible = true
+                }
                 R.id.logoutMenuItem -> {
                     authViewModel.logout()
                     finish()
@@ -51,5 +63,13 @@ class HomeActivity : BaseActivity() {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+    }
+
+    override fun onBackPressed() {
+        if(aboutFragmentIsVisible){
+            binding.navigationView.menu[0].isChecked = true
+            aboutFragmentIsVisible = false
+        }
+        super.onBackPressed()
     }
 }

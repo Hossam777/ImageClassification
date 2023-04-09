@@ -20,7 +20,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.imageclassification.R
 import com.example.imageclassification.data.local.IMG_SIZE
 import com.example.imageclassification.data.local.SUCCESS_RATE_IMG
+import com.example.imageclassification.data.local.UserSessionManager
 import com.example.imageclassification.databinding.FragmentClassificationBinding
+import com.example.imageclassification.presentation.homeactivity.objectdetection.ImageClassifier
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 import javax.inject.Inject
@@ -33,8 +35,9 @@ class ClassificationFragment : Fragment() {
     }
     @Inject
     lateinit var imageClassifier: ImageClassifier
+    @Inject
+    lateinit var userSessionManager: UserSessionManager
     private lateinit var viewModel: ClassificationViewModel
-    val imageSize = 32
     lateinit var binding: FragmentClassificationBinding
 
     override fun onCreateView(
@@ -52,25 +55,30 @@ class ClassificationFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        binding.takePictureTxt.setOnClickListener {
+        binding.LiveCameraTxt.setOnClickListener {
             findNavController().navigate(R.id.navigateToLiveDetection)
         }
         binding.launchGalleryTxt.setOnClickListener {
             getImageFromGallery.launch(Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI))
         }
+        binding.takePictureTxt.setOnClickListener {
+            captureImage.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
+        }
     }
-    /*private val captureImage = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    private val captureImage = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         it?.let{
             it.data?.extras?.get("data").let {
                 var image = it as Bitmap
+                userSessionManager.processedImage = image
                 val dimension = Math.min(image.width, image.height)
                 image = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
                 binding.imageIV.setImageBitmap(image)
-                image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false)
+                image = Bitmap.createScaledBitmap(image, IMG_SIZE, IMG_SIZE, false)
                 classifyImage(image)
             }
         }
-    }*/
+    }
+
     private val getImageFromGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         it?.let{ activityResult ->
             activityResult.data?.data.let { uri ->
@@ -78,19 +86,23 @@ class ClassificationFragment : Fragment() {
                 try {
                     image = MediaStore.Images.Media.getBitmap(activity?.contentResolver, uri)
                     binding.imageIV.setImageBitmap(image)
+                    userSessionManager.processedImage = image
                     val dimension = Math.min(image.width, image.height)
                     image = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
                     image = Bitmap.createScaledBitmap(image, IMG_SIZE, IMG_SIZE, false)
-                    val index = imageClassifier.classifyImage(image, SUCCESS_RATE_IMG)
-                    if(index != -1){
-                    findNavController().navigate(R.id.navigateToResultFragment
-                        , bundleOf("buildingIndex" to index))}
-                    else
-                        Toast.makeText(requireContext(), "Undefined", Toast.LENGTH_SHORT).show()
+                    image.let { classifyImage(image) }
                 }catch (e: IOException) {
                     e.printStackTrace();
                 }
             }
         }
+    }
+    private fun classifyImage(image: Bitmap) {
+        val outputArr = imageClassifier.classifyImage(image, SUCCESS_RATE_IMG)
+        if(outputArr[0] != -1f){
+            findNavController().navigate(R.id.navigateToResultFragment
+                , bundleOf("buildingIndex" to outputArr[0].toInt()))}
+        else
+            Toast.makeText(requireContext(), "لا يمكن تحديدة", Toast.LENGTH_SHORT).show()
     }
 }

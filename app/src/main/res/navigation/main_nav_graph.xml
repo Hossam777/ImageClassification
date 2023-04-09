@@ -39,4 +39,9 @@
             app:argType="integer"
             android:defaultValue="-1" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        app:route="about"
+        android:name="com.example.imageclassification.presentation.homeactivity.AboutUsFragment"
+        tools:layout="@layout/fragment_about_us" />
 </navigation>

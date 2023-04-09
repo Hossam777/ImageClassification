@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ImageClassification</string>
     <string name="launch_gallery">افتح المعرض</string>
-    <string name="take_picture">كاميرا</string>
+    <string name="take_picture">القط صورة</string>
     <string name="settings">الاعدادات</string>
     <string name="profile">الملف الشخصى</string>
     <string name="about_us">عن التطبيق</string>
@@ -29,7 +29,7 @@
     <string name="please_enter_signup">الرجاء إدخال بياناتك لإنشاء حساب</string>
     <string name="to_signup_click">لإنشاء حساب اضغط</string>
     <string name="here">هنا</string>
-    <string name="welcome_text">welcome text</string>
+    <string name="welcome_text">اكتشف نوعية</string>
     <string name="continue_">استمرار</string>
     <string name="home_page">الصفحة الرئيسية</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -37,4 +37,8 @@
     <string name="description">عند الضغط على استمرار سيتم تحويلك لالتقاط صورة لأي مبنى من مباني كلية تربية نوعية و عرض جميع المعلومات الخاصة بهذا المبنى *يمكنك أيضاً اختيار صورة من معرض الصور الخاص بك*</string>
     <string name="show_building_details">عرض البيانات</string>
     <string name="hide">اخفاء</string>
+    <string name="live_camera">افتح الكاميرا</string>
+    <string name="home_item">الرئيسية</string>
+    <string name="password_reset_msg">تم ارسال بريد الكتروني لتغير كلمة السر</string>
+    <string name="forgot_password">نسيت كلمة السر</string>
 </resources>

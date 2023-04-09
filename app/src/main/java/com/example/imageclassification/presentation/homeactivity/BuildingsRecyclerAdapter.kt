@@ -1,20 +1,23 @@
 package com.example.imageclassification.presentation.homeactivity
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.imageclassification.data.local.Building
+import com.example.imageclassification.data.local.buildings
 import com.example.imageclassification.databinding.BuldingItemBinding
 
 class BuildingsRecyclerAdapter (private val onEmptyList: () -> Unit
                                 , private val onAdded: (Int) -> Unit
-                                , private val onItemClicked: (Int) -> Unit)
+                                , private val onItemClicked: (Int, Bitmap?) -> Unit)
     : RecyclerView.Adapter<BuildingsRecyclerAdapter.BuildingRecyclerHolder>(){
 
     private var buildingsList: MutableList<Building> = mutableListOf()
 
-    fun addBuilding (building: Building){
+    fun addBuilding (building: Building, image: Bitmap){
         if (!buildingsList.contains(building)){
+            building.photoBitmap = image
             buildingsList.add(building)
             onAdded(building.id)
             notifyDataSetChanged()
@@ -40,7 +43,7 @@ class BuildingsRecyclerAdapter (private val onEmptyList: () -> Unit
     override fun onBindViewHolder(holder: BuildingRecyclerHolder, position: Int) {
         holder.binding.buildingNameTV.text = buildingsList[position].name
         holder.binding.buidlingIV.setImageResource(buildingsList[position].photo)
-        holder.binding.root.setOnClickListener { onItemClicked(buildingsList[position].id) }
+        holder.binding.root.setOnClickListener { onItemClicked(buildingsList[position].id, buildingsList[position].photoBitmap) }
     }
 
 
