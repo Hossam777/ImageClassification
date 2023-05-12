@@ -10,6 +10,7 @@ import com.example.imageclassification.R
 import com.example.imageclassification.bases.BaseActivity
 import com.example.imageclassification.databinding.ActivitySignupBinding
 import com.example.imageclassification.presentation.homeactivity.HomeActivity
+import com.example.imageclassification.presentation2.HomeActivity2
 import com.example.imageclassification.utils.NetworkManager
 import com.example.imageclassification.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +30,7 @@ class SignupActivity : BaseActivity() {
             finish()
         }
         authViewModel.user.observe(this) {
-            it.let { startActivity(Intent(this, HomeActivity::class.java)) }
+            it.let { startActivity(Intent(this, HomeActivity2::class.java)) }
         }
         binding.signupBtn.setOnClickListener {
             if(authViewModel.isLoading.value == true) return@setOnClickListener

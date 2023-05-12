@@ -12,6 +12,7 @@ import com.example.imageclassification.R
 import com.example.imageclassification.bases.BaseActivity
 import com.example.imageclassification.databinding.ActivityLoginBinding
 import com.example.imageclassification.presentation.homeactivity.HomeActivity
+import com.example.imageclassification.presentation2.HomeActivity2
 import com.example.imageclassification.utils.NetworkManager
 import com.example.imageclassification.utils.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
@@ -47,7 +48,7 @@ class LoginActivity : BaseActivity() {
             }
         }
         authViewModel.user.observe(this) {
-            it.let { startActivity(Intent(this, HomeActivity::class.java)) }
+            it.let { startActivity(Intent(this, HomeActivity2::class.java)) }
         }
         binding.signupScreenBtn.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))

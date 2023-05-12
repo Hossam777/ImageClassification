@@ -103,6 +103,6 @@ class ClassificationFragment : Fragment() {
             findNavController().navigate(R.id.navigateToResultFragment
                 , bundleOf("buildingIndex" to outputArr[0].toInt()))}
         else
-            Toast.makeText(requireContext(), "لا يمكن تحديدة", Toast.LENGTH_SHORT).show()
+            binding.undefinedTxt.text = resources.getText(R.string.undefined)
     }
 }

@@ -47,11 +47,13 @@ class HomeActivity : BaseActivity() {
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.homeMenuItem -> {
+                    binding.titleTv.text = resources.getString(R.string.home_page)
                     if(aboutFragmentIsVisible)
                         findNavController(R.id.navHostFragment).popBackStack()
                     aboutFragmentIsVisible = false
                 }
                 R.id.aboutMenuItem -> {
+                    binding.titleTv.text = resources.getString(R.string.about_us)
                     findNavController(R.id.navHostFragment).navigate("about")
                     aboutFragmentIsVisible = true
                 }

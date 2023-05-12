@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation2.AboutCollegeActivity"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="5dp"
+            android:background="@color/baby_blue"
+            android:paddingVertical="10dp">
+            <ImageButton
+                android:id="@+id/backBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/left_arrow"
+                app:backgroundTint="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nw3ya-Ain Shams"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="5dp"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="5dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/resalaLL"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/rect_with_radius"
+            android:layout_marginStart="10dp"
+            android:elevation="5dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/appBar"
+            app:layout_constraintEnd_toStartOf="@+id/nabzaLL"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/sh2on_edarya" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="رسالة الكلية"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/nabzaLL"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/rect_with_radius"
+            android:layout_marginEnd="10dp"
+            android:elevation="5dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/resalaLL"
+            app:layout_constraintStart_toEndOf="@+id/resalaLL"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/about_college" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="نبذه عن الكلية"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ahdafLL"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rect_with_radius"
+            android:layout_marginStart="10dp"
+            android:elevation="5dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/resalaLL"
+            app:layout_constraintEnd_toStartOf="@+id/ro2yaLL"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/buildings" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="اهداف الكلية"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ro2yaLL"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/rect_with_radius"
+            android:layout_marginEnd="10dp"
+            android:elevation="5dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/ahdafLL"
+            app:layout_constraintStart_toEndOf="@+id/ahdafLL"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/sections" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="رؤية الكلية"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/sho3abLL"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rect_with_radius"
+            android:layout_marginStart="10dp"
+            android:elevation="5dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ahdafLL"
+            app:layout_constraintEnd_toStartOf="@+id/aksamLL"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/buildings" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="الشعب التخصصية"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/aksamLL"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/rect_with_radius"
+            android:layout_marginEnd="10dp"
+            android:elevation="5dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/sho3abLL"
+            app:layout_constraintStart_toEndOf="@+id/sho3abLL"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/sections" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="الاقسام العلمية بالكلية"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/se3atLL"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rect_with_radius"
+            android:layout_marginStart="10dp"
+            android:elevation="5dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/sho3abLL"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/about_app" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="سعة المدرجات"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

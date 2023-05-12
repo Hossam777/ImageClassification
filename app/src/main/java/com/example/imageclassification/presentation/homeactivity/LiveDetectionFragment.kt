@@ -175,12 +175,12 @@ class LiveDetectionFragment : Fragment(){
             CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
         preview =
             Preview.Builder()
-                .setTargetResolution(Size(3000, 3000))
+                .setTargetResolution(Size(1000, 1000))
                 .build()
         imageAnalyzer =
             ImageAnalysis.Builder()
                 .setOutputImageFormat(OUTPUT_IMAGE_FORMAT_RGBA_8888)
-                .setTargetResolution(Size(3000, 3000))
+                .setTargetResolution(Size(1000, 1000))
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
                 .also {
@@ -199,7 +199,7 @@ class LiveDetectionFragment : Fragment(){
                             val imageScaled = Bitmap.createScaledBitmap(imageBitmap, IMG_SIZE, IMG_SIZE, false)
                             imageClassifier.classifyImage(imageScaled, SUCCESS_RATE_CAMERA).let { outputArr ->
                                 if(outputArr[1] > 0.9f)
-                                showMessage("اقتربت جداً")
+                                    showMessage("اقتربت جداً")
                                 else if(outputArr[1] > 0.5f)
                                     showMessage("اقتربت، ركز على المبنى")
                                 else
@@ -223,6 +223,6 @@ class LiveDetectionFragment : Fragment(){
         }
     }
     private fun showMessage(message: String) {
-        binding.messageTxt.text = message
+        activity?.runOnUiThread { binding.messageTxt.text = message }
     }
 }

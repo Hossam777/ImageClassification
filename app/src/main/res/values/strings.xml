@@ -41,4 +41,5 @@
     <string name="home_item">الرئيسية</string>
     <string name="password_reset_msg">تم ارسال بريد الكتروني لتغير كلمة السر</string>
     <string name="forgot_password">نسيت كلمة السر</string>
+    <string name="undefined">لا يمكن تحديده</string>
 </resources>
