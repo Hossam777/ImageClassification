@@ -61,7 +61,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/sh2on_edarya" />
+                android:src="@drawable/writing" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/about_college" />
+                android:src="@drawable/open_book" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -116,7 +116,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/buildings" />
+                android:src="@drawable/target" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/sections" />
+                android:src="@drawable/vision" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/buildings" />
+                android:src="@drawable/hierarchy" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -195,7 +195,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/sections" />
+                android:src="@drawable/diagram" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -223,7 +223,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/about_app" />
+                android:src="@drawable/prototype" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -37,11 +37,11 @@ class BuildingsActivity : BaseActivity() {
         bindingDialog.closeBtn.setOnClickListener {
             dialog.dismiss()
         }
-        binding.ardyLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
-        binding.mainBuidlingLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
-        binding.castleLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
         binding.theaterLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
-        binding.badromLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
+        binding.artBuildingLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
+        binding.economyBuildingLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
+        binding.learningBuildingLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
+        //binding.badromLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
     }
     fun showDialog(dialog: AlertDialog, list: MutableList<DialogItem>){
         adapter.setItems(list)

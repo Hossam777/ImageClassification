@@ -45,7 +45,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:id="@+id/ardyLL"
+            android:id="@+id/economyBuildingLL"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="50dp"
@@ -54,33 +54,33 @@
             android:elevation="5dp"
             android:gravity="center_horizontal"
             app:layout_constraintTop_toBottomOf="@+id/appBar"
-            app:layout_constraintEnd_toStartOf="@+id/mainBuidlingLL"
+            app:layout_constraintEnd_toStartOf="@+id/learningBuildingLL"
             app:layout_constraintStart_toStartOf="parent"
             android:orientation="vertical">
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/sh2on_edarya" />
+                android:src="@drawable/building" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="الدور الارضي"
+                android:text="مبنى اقتصاد"
                 android:textColor="@color/gray"
                 android:textSize="15sp" />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/mainBuidlingLL"
+            android:id="@+id/learningBuildingLL"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/rect_with_radius"
             android:layout_marginEnd="10dp"
             android:elevation="5dp"
             android:gravity="center_horizontal"
-            app:layout_constraintTop_toTopOf="@+id/ardyLL"
-            app:layout_constraintStart_toEndOf="@+id/ardyLL"
+            app:layout_constraintTop_toTopOf="@+id/economyBuildingLL"
+            app:layout_constraintStart_toEndOf="@+id/economyBuildingLL"
             app:layout_constraintEnd_toEndOf="parent"
             android:orientation="vertical">
 
@@ -88,41 +88,14 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/about_college" />
+                android:src="@drawable/building" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="المبني"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/castleLL"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/rect_with_radius"
-            android:layout_marginStart="10dp"
-            android:elevation="5dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/ardyLL"
-            app:layout_constraintEnd_toStartOf="@+id/theaterLL"
-            app:layout_constraintStart_toStartOf="parent"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/buildings" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="القلعة"
+                android:text="المبنى التعليمي"
                 android:textColor="@color/gray"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -130,19 +103,20 @@
             android:id="@+id/theaterLL"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/rect_with_radius"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:elevation="5dp"
             android:gravity="center_horizontal"
-            app:layout_constraintTop_toTopOf="@+id/castleLL"
-            app:layout_constraintStart_toEndOf="@+id/castleLL"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/economyBuildingLL"
+            app:layout_constraintEnd_toStartOf="@+id/artBuildingLL"
+            app:layout_constraintStart_toStartOf="parent"
             android:orientation="vertical">
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/sections" />
+                android:src="@drawable/building" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,8 +126,34 @@
                 android:textColor="@color/gray"
                 android:textSize="15sp" />
         </LinearLayout>
-
         <LinearLayout
+            android:id="@+id/artBuildingLL"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/rect_with_radius"
+            android:layout_marginEnd="10dp"
+            android:elevation="5dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/theaterLL"
+            app:layout_constraintStart_toEndOf="@+id/theaterLL"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/building" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="مبنى فنية"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!--<LinearLayout
             android:id="@+id/badromLL"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -179,6 +179,6 @@
                 android:text="بدروم"
                 android:textColor="@color/gray"
                 android:textSize="15sp" />
-        </LinearLayout>
+        </LinearLayout>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

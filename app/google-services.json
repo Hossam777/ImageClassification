@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "870256694770",
+    "project_id": "imageclassification-f2453",
+    "storage_bucket": "imageclassification-f2453.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870256694770:android:811aa9f0d7049f86e2476b",
+        "android_client_info": {
+          "package_name": "com.example.imageclassification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870256694770-eee26ne657e4un1kvk6rt731t0rc5np8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh5l1vxYgZ6uQ8zU-c_HyEDsQhOi-K4Y4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870256694770-eee26ne657e4un1kvk6rt731t0rc5np8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

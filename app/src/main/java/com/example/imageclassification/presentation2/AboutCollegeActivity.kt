@@ -8,7 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.imageclassification.R
 import com.example.imageclassification.bases.BaseActivity
 import com.example.imageclassification.data.local.DialogItem
+import com.example.imageclassification.data.local.ahdafElKolya
+import com.example.imageclassification.data.local.alAqsamElAmalya
+import com.example.imageclassification.data.local.elShoaab
+import com.example.imageclassification.data.local.nabzaAanElKolya
+import com.example.imageclassification.data.local.resaletElKolya
 import com.example.imageclassification.data.local.ro2yetElKolya
+import com.example.imageclassification.data.local.seeaatElModaragat
 import com.example.imageclassification.databinding.ActivityAboutCollegeBinding
 import com.example.imageclassification.databinding.CustomDialogBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -37,13 +43,13 @@ class AboutCollegeActivity : BaseActivity() {
         bindingDialog.closeBtn.setOnClickListener {
             dialog.dismiss()
         }
-        binding.resalaLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
-        binding.nabzaLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
-        binding.ahdafLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
+        binding.resalaLL.setOnClickListener { showDialog(dialog, resaletElKolya) }
+        binding.nabzaLL.setOnClickListener { showDialog(dialog, nabzaAanElKolya) }
+        binding.ahdafLL.setOnClickListener { showDialog(dialog, ahdafElKolya) }
         binding.ro2yaLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
-        binding.sho3abLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
-        binding.aksamLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
-        binding.se3atLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
+        binding.sho3abLL.setOnClickListener { showDialog(dialog, elShoaab) }
+        binding.aksamLL.setOnClickListener { showDialog(dialog, alAqsamElAmalya) }
+        binding.se3atLL.setOnClickListener { showDialog(dialog, seeaatElModaragat) }
     }
     fun showDialog(dialog: AlertDialog, list: MutableList<DialogItem>){
         adapter.setItems(list)
