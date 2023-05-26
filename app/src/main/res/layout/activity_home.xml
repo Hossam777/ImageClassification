@@ -19,7 +19,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <View
+                <!--<View
                     android:id="@+id/topViewBG"
                     android:layout_width="match_parent"
                     android:layout_height="68dp"
@@ -47,13 +47,13 @@
                     app:layout_constraintBottom_toBottomOf="@id/menuOpenBtn"
                     android:text="@string/home_page"
                     android:textSize="20sp"
-                    android:textColor="#FFF" />
+                    android:textColor="#FFF" />-->
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/navHostFragment"
                     android:name="androidx.navigation.fragment.NavHostFragment"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    app:layout_constraintTop_toBottomOf="@+id/topViewBG"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:navGraph="@navigation/main_nav_graph"
                     app:defaultNavHost="true"/>

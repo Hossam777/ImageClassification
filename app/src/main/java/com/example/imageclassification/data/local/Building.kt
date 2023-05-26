@@ -8,4 +8,5 @@ data class Building(
     val description: String,
     val photo: Int,
     var photoBitmap: Bitmap?,
+    var floors: MutableList<Floor>?,
 )

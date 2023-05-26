@@ -10,15 +10,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_bg"
+        android:background="@drawable/background"
         tools:context=".presentation.mainactivity.MainActivity">
         <ImageView
             android:id="@+id/logoIV"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="180dp"
+            android:layout_height="200dp"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="100dp"
             android:src="@drawable/logo"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -48,7 +49,7 @@
             app:layout_constraintTop_toBottomOf="@+id/welcomeTxt"
             android:layout_marginTop="100dp"
             android:background="@drawable/btn_bg_radius_24"
-            app:backgroundTint="@color/green_btn_bg" />
+            app:backgroundTint="@color/baby_blue" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

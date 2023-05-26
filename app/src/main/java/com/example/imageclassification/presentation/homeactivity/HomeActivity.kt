@@ -24,7 +24,7 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding.executePendingBindings()
         binding.lifecycleOwner = this
-        navigationMenuSetup()
+        //navigationMenuSetup()
         authViewModel.setupFirebaseAuth()
         authViewModel.user.observe(this) {
             Toast.makeText(
@@ -36,10 +36,10 @@ class HomeActivity : BaseActivity() {
         binding.navigationView.menu[0].isChecked = true
     }
 
-    private fun navigationMenuSetup() {
-        binding.menuOpenBtn.setOnClickListener {
+    /*private fun navigationMenuSetup() {
+        /*binding.menuOpenBtn.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
-        }
+        }*/
         binding.navigationView.getHeaderView(0).findViewById<ImageButton>(R.id.menuCloseBtn)
             .setOnClickListener {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -65,7 +65,7 @@ class HomeActivity : BaseActivity() {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
-    }
+    }*/
 
     override fun onBackPressed() {
         if(aboutFragmentIsVisible){

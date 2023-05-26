@@ -34,4 +34,5 @@ object AppModule {
     fun provideImageClassifier(context: Context): ImageClassifier =
         ImageClassifier(context)
 
+
 }

@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/app_bg"
+    android:background="@drawable/background"
+    android:elevation="5dp"
     app:behavior_hideable="true"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
     <TextView
@@ -31,5 +32,5 @@
         android:layout_marginBottom="39dp"
         android:layout_marginStart="19dp"
         android:background="@drawable/btn_bg_radius_24"
-        app:backgroundTint="@color/green_btn_bg" />
+        app:backgroundTint="@color/baby_blue" />
 </androidx.constraintlayout.widget.ConstraintLayout>

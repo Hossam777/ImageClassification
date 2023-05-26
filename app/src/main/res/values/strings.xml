@@ -35,11 +35,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="description">عند الضغط على استمرار سيتم تحويلك لالتقاط صورة لأي مبنى من مباني كلية تربية نوعية و عرض جميع المعلومات الخاصة بهذا المبنى *يمكنك أيضاً اختيار صورة من معرض الصور الخاص بك*</string>
-    <string name="show_building_details">عرض البيانات</string>
+    <string name="show_building_details">عرض محتويات المبني</string>
     <string name="hide">اخفاء</string>
     <string name="live_camera">افتح الكاميرا</string>
     <string name="home_item">الرئيسية</string>
     <string name="password_reset_msg">تم ارسال بريد الكتروني لتغير كلمة السر</string>
     <string name="forgot_password">نسيت كلمة السر</string>
     <string name="undefined">لا يمكن تحديده</string>
+    <string name="ektashef_naw3ya">اكتشف نوعية</string>
+    <string name="buildings">المباني</string>
 </resources>

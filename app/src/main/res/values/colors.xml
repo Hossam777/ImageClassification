@@ -4,12 +4,13 @@
     <color name="baby_blue">#0678DC</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="green">#025648</color>
+    <color name="green">#0678DC</color>
     <color name="green_btn_bg">#00725F</color>
     <color name="orange">#EC8E31</color>
     <color name="black">#FF000000</color>
     <color name="gray">#787878</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
-    <color name="mtrl_textinput_default_box_stroke_color">#025648</color>
+    <color name="appbar_bg">#6D93C3</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#0678DC</color>
 </resources>

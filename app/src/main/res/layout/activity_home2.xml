@@ -7,220 +7,92 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation2.HomeActivity2"
-        android:background="@color/white">
-
-        <LinearLayout
-            android:id="@+id/appBar"
+        android:background="@drawable/background">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="vertical"
-            android:gravity="right"
-            android:elevation="5dp"
-            android:background="@color/baby_blue"
-            android:paddingVertical="10dp">
+            android:paddingBottom="20dp"
+            tools:context=".presentation2.HomeActivity2">
+            <LinearLayout
+                android:id="@+id/appBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="vertical"
+                android:gravity="right"
+                android:elevation="5dp"
+                android:background="@color/appbar_bg"
+                android:paddingVertical="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nw3ya-Ain Shams"
-                android:textSize="25sp"
-                android:textColor="@color/white"
-                android:layout_marginHorizontal="5dp" />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ektashef_naw3ya"
+                    android:textSize="25sp"
+                    android:textColor="@color/white"
+                    android:layout_marginHorizontal="5dp" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/sh2onLL"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/rect_with_radius"
-            android:layout_marginStart="10dp"
-            android:elevation="5dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/appBar"
-            app:layout_constraintEnd_toStartOf="@+id/aboutLL"
-            app:layout_constraintStart_toStartOf="parent"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/sh2on_edarya" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="شؤون إدارية وخدمية"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/aboutLL"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@drawable/rect_with_radius"
-            android:layout_marginEnd="10dp"
-            android:elevation="5dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toTopOf="@+id/sh2onLL"
-            app:layout_constraintStart_toEndOf="@+id/sh2onLL"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/aboutLL"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/rect_with_radius"
+                android:layout_marginEnd="10dp"
+                android:elevation="5dp"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toTopOf="@+id/buildingLL"
+                app:layout_constraintStart_toEndOf="@+id/buildingLL"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/about_college" />
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/about_college" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="عن الكلية"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/buildingLL"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/rect_with_radius"
-            android:layout_marginStart="10dp"
-            android:elevation="5dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/sh2onLL"
-            app:layout_constraintEnd_toStartOf="@+id/sectionsLL"
-            app:layout_constraintStart_toStartOf="parent"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/buildings" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="المباني"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/sectionsLL"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@drawable/rect_with_radius"
-            android:layout_marginEnd="10dp"
-            android:elevation="5dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toTopOf="@+id/buildingLL"
-            app:layout_constraintStart_toEndOf="@+id/buildingLL"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/sections" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="الاقسام"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/aboutAppLL"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/rect_with_radius"
-            android:layout_marginStart="10dp"
-            android:elevation="5dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/buildingLL"
-            app:layout_constraintEnd_toStartOf="@+id/locationLL"
-            app:layout_constraintStart_toStartOf="parent"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/about_app" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="عن التطبيق"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/locationLL"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@drawable/rect_with_radius"
-            android:layout_marginEnd="10dp"
-            android:elevation="5dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toTopOf="@+id/aboutAppLL"
-            app:layout_constraintStart_toEndOf="@+id/aboutAppLL"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/location" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="الموقع الجغرافي"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/searchForBuildingLL"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@drawable/rect_with_radius"
-            android:layout_marginTop="30dp"
-            android:elevation="5dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/aboutAppLL"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/search"
-                app:tint="@color/baby_blue"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="التعرف علي مبني"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="عن الكلية"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/buildingLL"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/rect_with_radius"
+                android:layout_marginStart="10dp"
+                android:elevation="5dp"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/appBar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/aboutLL"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/buildings" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="المباني"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

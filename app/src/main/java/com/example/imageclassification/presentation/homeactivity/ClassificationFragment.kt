@@ -64,6 +64,9 @@ class ClassificationFragment : Fragment() {
         binding.takePictureTxt.setOnClickListener {
             captureImage.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
         }
+        binding.backBtn.setOnClickListener {
+            activity?.finish()
+        }
     }
     private val captureImage = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         it?.let{

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation2.AboutCollegeActivity"
-        android:background="@color/white">
+        android:background="@drawable/background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/appBar"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:elevation="5dp"
-            android:background="@color/baby_blue"
+            android:background="@color/appbar_bg"
             android:paddingVertical="10dp">
             <ImageButton
                 android:id="@+id/backBtn"
@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nw3ya-Ain Shams"
+                android:text="@string/ektashef_naw3ya"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -153,7 +153,7 @@
                 android:textSize="15sp" />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/sho3abLL"
+            android:id="@+id/locationLL"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="30dp"
@@ -169,13 +169,13 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/hierarchy" />
+                android:src="@drawable/location" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="الشعب التخصصية"
+                android:text="الموقع الجغرافي"
                 android:textColor="@color/gray"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -187,8 +187,8 @@
             android:layout_marginEnd="10dp"
             android:elevation="5dp"
             android:gravity="center_horizontal"
-            app:layout_constraintTop_toTopOf="@+id/sho3abLL"
-            app:layout_constraintStart_toEndOf="@+id/sho3abLL"
+            app:layout_constraintTop_toTopOf="@+id/locationLL"
+            app:layout_constraintStart_toEndOf="@+id/locationLL"
             app:layout_constraintEnd_toEndOf="parent"
             android:orientation="vertical">
             <ImageView
@@ -206,32 +206,5 @@
                 android:textSize="15sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/se3atLL"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/rect_with_radius"
-            android:layout_marginStart="10dp"
-            android:elevation="5dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/sho3abLL"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/prototype" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="سعة المدرجات"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
