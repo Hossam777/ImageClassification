@@ -1,5 +1,6 @@
 package com.example.imageclassification.presentation2.adapters
 
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,15 @@ class DialogRecyclerAdapter ()
     : RecyclerView.Adapter<DialogRecyclerAdapter.DialogRecyclerHolder>(){
 
     private var dialogItems: MutableList<DialogItem> = mutableListOf()
+    private var isSection: Boolean = false
 
     fun setItems (items: MutableList<DialogItem>){
         dialogItems = items
+        notifyDataSetChanged()
+    }
+    fun setItems (items: MutableList<DialogItem>, issection: Boolean){
+        dialogItems = items
+        isSection = issection
         notifyDataSetChanged()
     }
 
@@ -40,6 +47,11 @@ class DialogRecyclerAdapter ()
             holder.binding.itemImg.setImageResource(dialogItems[position].img!!)
         else
             holder.binding.itemImg.visibility = View.GONE
+
+        if(isSection)
+            holder.binding.itemText.gravity = Gravity.START
+        else
+            holder.binding.itemText.gravity = Gravity.CENTER
     }
 
     inner class DialogRecyclerHolder(

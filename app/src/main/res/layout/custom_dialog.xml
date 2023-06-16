@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rect_with_radius">
+        android:background="@drawable/background">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dialogRecycler"
             android:layout_width="match_parent"

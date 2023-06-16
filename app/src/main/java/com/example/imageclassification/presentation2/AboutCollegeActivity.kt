@@ -40,21 +40,21 @@ class AboutCollegeActivity : BaseActivity() {
 
         val dialog = materialDialog.show()
         dialog.dismiss()
-        binding.resalaLL.setOnClickListener { showDialog(dialog, resaletElKolya) }
-        binding.nabzaLL.setOnClickListener { showDialog(dialog, nabzaAanElKolya) }
-        binding.ahdafLL.setOnClickListener { showDialog(dialog, ahdafElKolya) }
-        binding.ro2yaLL.setOnClickListener { showDialog(dialog, ro2yetElKolya) }
-        binding.aksamLL.setOnClickListener { showDialog(dialog, alAqsamElAmalya) }
+        binding.resalaLL.setOnClickListener { showDialog(dialog, resaletElKolya, false) }
+        binding.nabzaLL.setOnClickListener { showDialog(dialog, nabzaAanElKolya, false) }
+        binding.ahdafLL.setOnClickListener { showDialog(dialog, ahdafElKolya, false) }
+        binding.ro2yaLL.setOnClickListener { showDialog(dialog, ro2yetElKolya, false) }
+        binding.aksamLL.setOnClickListener { showDialog(dialog, alAqsamElAmalya, true) }
         binding.locationLL.setOnClickListener {
             val intent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://www.google.com/maps/dir/?api=1&query=30.0721236%2C31.2574889")
+                Uri.parse("https://www.google.com/maps/dir//Faculty+Of+Specific+Education+-+Ain+Shams+University,+%D8%B1%D9%85%D8%B3%D9%8A%D8%B3%D8%8C+El-Montaza,+Heliopolis,+%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9%D8%8C%E2%80%AD/@30.0444196,31.2357116,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x14583f9b089cdf55:0xc02108b0d965a80f!2m2!1d31.2847106!2d30.0758042!3e0?entry=ttu")
             )
             startActivity(intent)
         }
     }
-    fun showDialog(dialog: AlertDialog, list: MutableList<DialogItem>){
-        adapter.setItems(list)
+    fun showDialog(dialog: AlertDialog, list: MutableList<DialogItem>, isSections: Boolean){
+        adapter.setItems(list, isSections)
         dialog.show()
     }
 }

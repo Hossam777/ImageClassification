@@ -2,7 +2,10 @@
 <resources>
     <color name="purple_700">#FF3700B3</color>
     <color name="baby_blue">#0678DC</color>
+    <color name="sky_blue">#A4C5E3</color>
+    <color name="sky_blue_8ame2">#4D5B68</color>
     <color name="teal_200">#FF03DAC5</color>
+
     <color name="teal_700">#FF018786</color>
     <color name="green">#0678DC</color>
     <color name="green_btn_bg">#00725F</color>
